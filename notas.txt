@@ -169,6 +169,33 @@ string.h is part of the C standard library dedicated to string manipulation
 
 strstr() ==> search within strings
 
+Chances are you wont want to use the whole of the standard library at once, so the library is broken up into several sections and each one has a header file.
+
+== stdio.h header file lets you use the standard input/output functions like printf and scanf
+== stdlib.h ????
+== string.h 
+
+strchr() ==> find a char within a string
+strcomp() ==> compare
+strstr() ==> find a string within a string
+strcpy() ==> copy
+strlen() ==> find length
+strcat() ==> concatenate two strings
+
+	// strstr will search for the second string in the first string
+	// returns 0 if no found
+	strstr("dysfunctional", "fun");
+
+// what happens when you read after the \0 in one of this strings?
+
+
+man strstr()
+
+https://stackoverflow.com/questions/21318269/bug-in-jukebox-code-head-first-c
+The problem is that fgets stores the newline in the destination string. So your strstr needs to find "town\n". One solution would be to trim search_for after  fgets to get rid of the newline.
+
+strstr(a,b) will return the address of string b in string a
+
 
 
 
