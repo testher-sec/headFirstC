@@ -357,6 +357,35 @@ By wrapping the header filename in quotes, you are telling the compiler to look 
 
 #include IS A PREPROCESSOR INSTRUCTION
 
+If you use a function you havent declared before, there will be a warning, because you havent ceclared it. The program will still work because it wil guess the function returns an int.
+
+So I dont need to have declarations for int functions
+The compiler just does the compilation step: converts the C source code into assembly code. gcc does preprocessing and compilation
+
+On a unix style operating system the header files are normally in places like /usr/local/include
+
+If the compiler finds a call to a function it hasnt heard of, it will assume the function returns an int
+
+XOR: ^
+*message = *message ^ 31;
+This means you XOR each character with number 31
+
+You can share code by putting it into a separate c file
+You need toput the function declarations in a separate .h header file
+include the header file in every c file that needs to use the shared code
+list all the c files needed in the compiler command
+
+gcc -c codigo.c
+gcc *.o -o launchprogram
+
+Automate your builds with the make tool....wooohooo
+- the dependencies
+- the recipe
+Together the dependencies and the recipe form a rule. A RULE tells make all it needs toknow to create the target file
+
+THE MAKE TOOL MAY HAVE A DIFFERENT NAME ON WINDOWS: because make came from the unix world there are different flavors of it available in Windows. MinGW includes a version of make called mingw32-make and Microsoft produce their own version called NMAKE
+All of the details are stored in a file called makefile.
+The recipes MUST begin with a TAB character
 
 
 
