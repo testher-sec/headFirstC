@@ -296,4 +296,79 @@ getopt() will record the options argument using the optarg variable
 after you read all the options you should skip past them using the optind variable.
 
 
+...........................................................MULTIPLE FILES............................................
+
+Quick guide to data types:
+- char: each character is just a number. ie: A == 65 (8 bits)
+http://www.asciitable.com
+- int: at least 16 bits (though it can vary) Numbers up to a few million
+- short: usually about half the space of an int
+- long: twice the memory of an int. At least 32 bits
+- float: basic data for storing float point numbers
+- double: up to twice the memory of a float. Larger andmore precise
+
+%hi is the proper code to format a short value
+%.2f formats a floating point number to 2 decimal places
+
+Why did putting a large number into a short go negative?
+The program stored just the RIGHTHANDSIDE of the number
+SIGNED values in binary beginning with 1 in highest bit are treated as negative numbers.
+
+If you divide integers you always get a rounded-off whole number.
+You can put some other keywords before data types to change the way that the numbers are interpreted:
+- unsigned: it will always be positive. from 0 to a maximum value that is about twice as large as the maximum number that can be stored inside an int. All data types are signed by default
+- long: To make it even longer
+
+Data types are different sizes on different platforms.
+
+PARA SABER EL ESTANDARD DE C QUE ESTOY USANDO...........
+
+evega@Esthers-MacBook-Pro multipleC (master) $ gcc -dM -E - < /dev/null | grep VERSION
+#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 101300
+#define __GXX_ABI_VERSION 1002
+#define __STDC_VERSION__ 201112L
+#define __VERSION__ "4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4)"
+
+
+__STDC_VERSION__ == 199409L el estándar es C941.
+__STDC_VERSION__ == 199901L el estándar es C99.
+__STDC_VERSION__ == 201112L es estándar es C11.
+Para otros estándares, se definen las macros de preprocesador:
+
+__ANSI__ para ANSI C (C89 y C90)
+__STDC__ de igual forma para ANSI C2.
+
+
+
+IMPORTANTE.... en el libro pone solo %z pero es %zd. Segun la doc
+z Specifies that a following d, i, o, u, x, X, or n conversion specifier applies to an argument with type pointer to size_t or the corresponding signed integer type.
+
+Technically the bit size of a computer can refer to several things, such as the size of its CPU instructions or the amount of data the CPU can read from meory. The bit size is really the favored size of numbers that the computer can deal with.
+
+You can avoid the compiler making assumptions by explicitly telling it what functions it should expect.
+Split the declaration from the definition
+A declaration has no body code and tells the compiler what return value to expect. 
+It is just a function SIGNATURE.
+C allows you to put the list of declarations at the beginning of your program code or even better. take the whole set of declarations out of the code into a HEADER FILE
+#include "totaller.h"
+
+When the compiler sees an include line with angle brackets it assumes it will find the header file somewhere off in the directories where the library code lives. 
+By wrapping the header filename in quotes, you are telling the compiler to look for a local file.
+
+#include IS A PREPROCESSOR INSTRUCTION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
