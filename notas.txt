@@ -394,7 +394,41 @@ you can speed up the compilation time by storing object code in *.o files
 
 ...........................................................STRUCTURES............................................
 
+Combine the basic dada types into structs and even handle lifes undertainties with uniones
+If you are after a simple yes or no, maybe bitfields is just what you need.
 
+the word struct is short for structured data type.
+
+const char * is used for strings that you dont want to change. That means it is often used to record string literals
+
+Wrapping parameters in a struct makes your code more stable
+You'll get an error if you try to read a struct field like it's an array
+THE ONLY WAY TO ACCESS THEM IS BY NAME. You can use this using the '.' operator
+
+An struct is not a pointer, is a name for the struct itself
+Struts are similar to classes in other languages, but it's not so easy to add methods to struts
+
+When you define a struct you are NOT telling the computer to create anything in memory. You are just giving a TEMPLATE
+The assignment copies the pointers to strings, not the strings themselves... WATCH IT!!
+WHEN YOU DEFINE A NEW VARIABLE THE COMPUTER NEEDS TO CREATE SPACE IN MEMORY FOR AN INSTANCE OF THE STRUCT
+When you assign a struct to another variable the compuer will create a brand new copy of the strucct
+
+WHEN YOU ARE ASSIGNING STRUCT VARIABLES YOU ARE TELLING THE COMPUTER TO COPY DATA
+
+Once you have combined structs together you can access the fields using a chain of '.' operators
+
+You can give your struct a proper name using TYPEDEF. It's really an alias for the struct. If you add the word typedef before the struct keywords and a typeName after the closing brace.
+the compiler is quite happy for you to skip the struct name and just define an alias
+
+A struct is a data type made from a sequence of other data types
+Structs are fixed length
+Struct fields are accessed by name using the <Struct>.<fieldname> syntax (aka dot notatio).
+Struct fields are stored in memory in the same order they appear in the code
+You can nest structs
+typedef creates an alias for a data type
+if you use typedef with a struct then you can skip giving the struct a name
+
+IN C, ALL ASSIGNMENTS COPY DATA, IF YOU WANT TO COPY A REFERENCE TO A PIECE OF DATA YOU SHOULD ASSIGN A POINTER.
 
 
 
