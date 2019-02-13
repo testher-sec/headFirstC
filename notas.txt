@@ -387,9 +387,12 @@ THE MAKE TOOL MAY HAVE A DIFFERENT NAME ON WINDOWS: because make came from the u
 All of the details are stored in a file called makefile.
 The recipes MUST begin with a TAB character
 
+Make is most commonly used to compile code but it can also be used as a command line installer, or a source control tool. In fact you can use make for almost any task that you an perform on the command line.
+
+you can speed up the compilation time by storing object code in *.o files
 
 
-
+...........................................................STRUCTURES............................................
 
 
 
