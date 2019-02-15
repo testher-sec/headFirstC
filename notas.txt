@@ -526,6 +526,26 @@ STRDUP will always create space ON THE HEAP. It cannot create space on the stack
 
 String literals are stored in a read-only area of memory set aside for constant values. When you set to constant values you dont need to take a defensive copy of them, because they'll never change.
 
+DYNAMIC MEMORY ALLOCATION LETS YOU CREATE THE MEMORY YOU NEED AT RUNTIME. And the way you access dynamic heap memory is with malloc() and free()
+
+You dont NEED TO clear your data before the program ends. The operating system will clear away all of the memory when the program exits. But it's good practice to aways explicitely free anything you have created.
+
+Dynamic data structures allow you to store a variable number of data items
+A linked list is a data structure that allow you to easily insert items
+Dynamic data structures are normally defined in C with recursive structs
+A recursive struct contains one or more pointers to a similar struct.
+The stack is used for local variables and is managed by the computer
+The heap is used for long term storage. You allofcate space with malloc()
+The sizeof operator will tell you how much space a struct needs
+Data will stay on the heap until you release it with free()
+
+Other data structure solutions:
+- Linked lists: can be used to store a sequence of items and make it easier to insert new items. But can be processed only in 1 direction
+- Associated array or map: It can be used to associate two different types of data. For example to associate peoples name to their phone numbers
+- Doubly linked list: It's like a normal linked list but it has connections going both ways. Each item connects to up to two other items and can be processed in two directions
+- Binary tree: each item can connect up to two other items. Useful for storing hierarchical information.
+
+It is really ikmportant to learn to track down and fix memory leaks in your code.
 
 
 
