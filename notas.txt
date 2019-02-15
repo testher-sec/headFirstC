@@ -430,6 +430,109 @@ if you use typedef with a struct then you can skip giving the struct a name
 
 IN C, ALL ASSIGNMENTS COPY DATA, IF YOU WANT TO COPY A REFERENCE TO A PIECE OF DATA YOU SHOULD ASSIGN A POINTER.
 
+In C parameters are passed to functions by value
+Remember when you assign structs in C the values are copied
+To be able to update it, you need a pointer to the struct
+
+The computer evaluates the . operator before it evaluates the *
+
+`````remember
+when you passed a variable to the scanf() function you had to pass a POINTER
+scanf("%f", &length_of_run);
+``````````````
+t->age means (*t).age
+
+t->age means, the age field in the struct that t points to
+
+When you call a function the values are copied to the parameter variables
+you can create pointers to structs just like any other type
+pointer->field is the same as (*pointer).field
+The -> notation cuts down on parentheses and makes the code more readable
+
+A union lets you reuse memory space.
+Computer will give the union enough space for its largest field and then leave it up to you which value you will store
+quantity(might be a float or a short)
+typedef union{
+	short count;
+	float weight;
+	float volume;
+} quantity;
+
+quantity q = {4};
+quantity q = {.weight=1.5};
+q.volume = 3.7;
+
+There will only ever be one piece of data store. The UNION just gives you a way of creating a variable that supports SEVERAL DIFFERENT DATA TYPES.
+
+Objective C supports designated initializers but C++ does not
+
+Designated initializers allow you to set STRUCT and UNION fields by name and are part of the C99 C standard
+They are very useful when you just want to set up a few of the fields of a struct.
+
+you can store lots of possible values in a union but you have NO WAY of knowing what type it was once stored.
+One trick that some C coders use is to reate an enum.
+
+enum colors {RED, GREEN, BLUE};
+enum colors favorite = RED;
+
+structs and unions separate items with semicolons but enums use commas
+
+C doesnt support binary lierals, but support hexadecimal literals
+int x = 0x56;
+
+A bitfield lets you specify how many bits an individual field will store
+If you have a sequence of bitfields the computer can squash them together to save space.
+Bitfields can save space if they are collected together IN A STRUCT but if the compiler finds a single bitfield on its own it might still have to pad it out to the size of a word. That's why bitfields are usually grouped together
+
+A designated initializer sets a field value by name
+Designated initializers are part of the C99 standard. They are not supported in C++;
+If you declare a union with a value in {braces}, it will be stored with the type of the first field
+enums store symbols
+Bitfields allow you to store a field with a custom numnber of bits
+BITFIELDS SHOULD BE DECLARED AS UNSIGNED INT.
+
+...........................................................BRIDGES............................................
+
+Linked Lists are like chains of data
+A linked list is an example of an abstract structure
+Another advantadge linked lists have over arryas: inserting data is very quick.
+A struct that contains a link to another struct of the same type is called a recursive structure.
+
+RECURSIVE STRUCTURES NEED NAMES: If you use the typedef command, you can normally skip giving the struct a proper name. But in a recursive structure, YOU NEED TO INCLUDE A POINTER TO THE SAME TYPE.
+C syntax wont let you use the typedef alias, so you need to give the struct a proper name. That's why the struct here is called struct island.
+yourself
+
+A struct cannot contain a whole recursive struct inside itself. 
+C needs to know the exact amount of space an struct will occupy in memory. If it allowed full recursive copies of the same struct then one piede of data would be a different size than another.
+C dYou have to create them 
+
+Declaring a variable half way throught the function is only allowed in C99 and C11.
+In ANSI C you need to declare all your local variables at the top of the function.
+
+Most of the memory we've been using so far has been in the stack. The stack is the area of memory that's used for local variables. Each piece of data is stored in a variable, and each variable disappears as soon as you leave its function.
+The trouble is, it's harder to get more storage on the stack at runtime, and that's where the heap comes in. The heap is the place where a program stores data that will need to be available longer term. It wont automatically get cleared away so that means it's the perfect place to store data structures like our linked list. You can think of the heap storage as being like reserving a locker in a locker room
+
+MEMORY ALLOCATION: MALLOC() function will give you a pointer to the space in the heap. When you are finished with the storage you need to release the memory using the FREE() function
+The heap has only a fixed amount of storage available, so be sure you use it wisely.
+===> #include <stdlib.h>
+===> island *p = malloc(sizeof(island)) ==> bytes
+===> free(p)
+Malloc returns a general purpose pointer with type void*
+
+Developers created a function in string.h called strdup()
+char *copy = strdup(str);
+It works out how long the tring is and then calls the malloc function to allocate the correct number of characters on the heap
+STRDUP will always create space ON THE HEAP. It cannot create space on the stack because that's for local variables. So you need to remember to release their storage with free()
+
+String literals are stored in a read-only area of memory set aside for constant values. When you set to constant values you dont need to take a defensive copy of them, because they'll never change.
+
+
+
+
+
+
+
+
 
 
 
