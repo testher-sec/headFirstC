@@ -586,6 +586,22 @@ int (*warp_fn)(int);
 warp_fn=go_to_warp_speed;
 warp_fn(4);
 
+RETURN TYPE (*POINTER VARIABLE)(PARAM TYPES)
+char** (*names_fn)(char*, int)
+
+>> Use function pointers to set the order
+the C standard library has a sort function that accepts a pointer to a COMPARATOR FUNCTION: QSORT function
+
+qsort(void *array, 
+		size_t length,
+		size_t item_size,
+		int (*compar)(const void *, const void *));
+
+REMEMBER A VOID* POINTER CAN POINT TO ANYTHING
+
+QSORT doesnt make a copy, it actually modifies the original array
+
+
 
 
 
