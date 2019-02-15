@@ -491,7 +491,7 @@ enums store symbols
 Bitfields allow you to store a field with a custom numnber of bits
 BITFIELDS SHOULD BE DECLARED AS UNSIGNED INT.
 
-...........................................................BRIDGES............................................
+...........................................................BRIDGES: malloc & free............................................
 
 Linked Lists are like chains of data
 A linked list is an example of an abstract structure
@@ -572,8 +572,19 @@ valgrind can tell you which lines of code in your source put the data on the hea
 valgrind can be used to check that you have fixed a leak
 
 
+...........................................................VARIADIC FUNCTIONS............................................
+Passing functions as arguments to other functions
+You need to work with function pointers
+Every function name is a pointer to the function. The are stored in the constants part of the memory.
+When you create a function fx(z) you are also creating a pointer variable called fx that contains the address of the function.
 
+Unfortunately C doesnt have a 'function' data type, so you cant declare a function pointer with anything like function *.
 
+char** is a pointer normally used to point to an array of strings.
+
+int (*warp_fn)(int);
+warp_fn=go_to_warp_speed;
+warp_fn(4);
 
 
 
