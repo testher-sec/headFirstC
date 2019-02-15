@@ -24,6 +24,8 @@ void marriage(response r) {
 	puts("us with a proposal of marriage");
 }
 
+void (*replies[])(response) = {dump, second_chance, marriage};
+
 int main() {
 	response r[] = {
 		{"Mike", DUMP},
@@ -44,5 +46,10 @@ int main() {
 				marriage(r[i]);
 		}
 	}
+
+	puts("Using the array of fuction pointers.............");
+	for (i=0; i<4; i++)
+		replies[r[i].type](r[i]);
+
 	return 0;
 }
