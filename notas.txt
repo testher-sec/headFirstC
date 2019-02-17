@@ -633,8 +633,53 @@ Be careful that you dont try to read more parameters that you've been given
 You will always need to know the data type of every parameter you read
 
 
+...........................................................LIBRARIES............................................
+Angle brackets are for standard headers.
+
+standard header directories are for example:
+- /usr/local/include
+- /usr/include
+- C:\MinGW\include
+There are two sets of files that you want to share between programs. The .h header files and the .o object files
+- Sharing .h header files
+	- Store them in a standard directory
+	- Put the full pathname in your include statement.
+	- Tell the compiler where to find them: gcc -I/myheader_files test.c .... -o testexec
+	The -I option tells the gcc. compiler that there is another place where it can find header files
+- Sharing .o object files
+	- by using the full pathname when compiling
+	- An ARCHIVE contains .o files (.a files)
+		- nm libl.a // to look inside them
+		- ar -rcs libhfsecurity.a encrypt.o checksum.o
+		- All .a files are like lib<somethign>.a That's the standar way. Begin with lib because they are STATIC libraries.
+		- STORE:
+			- in the standard directory like /usr/local/lib
+			- custom directory my_lib
+		- COMPILE
+			- gcc test_code.c -L/my_lib -l<somethign> -o test_code
+				- The name that follows the -l option needs to match part of the archive name.
 
 
+
+encrypt.o : encrypt.c
+	gcc -c encrypt.c -o encript.o
+
+checksum.o : checksum.c
+	gcc : -c checksum.c -o checksum.o
+
+libhfsecurity.a: encrypt.o checksum.o
+	ar -rcs libhfsecurity.a encrypt.o checksum.o
+
+bank_vault : banckvault.c libhfsecurity.a
+	gcc backvault.c -I . -L . lhfsecurity -o bank_vault
+
+Indicate -I because header files are in the "." directory
+Indicate -L because the archive is in current directory
+
+If i've created a library archive, I can see what's inside with "ar -t <filename>"
+Files are not linked together in the archive like an executable. They are stored as distinct files
+I cannot put any kind of files in a library archive. The ar command will check the type before including it
+To extract an object from te archive use "ar -x libhfsecurity.a encrypt.o"
 
 
 
