@@ -681,6 +681,59 @@ Files are not linked together in the archive like an executable. They are stored
 I cannot put any kind of files in a library archive. The ar command will check the type before including it
 To extract an object from te archive use "ar -x libhfsecurity.a encrypt.o"
 
+... can you link at RUNTIME
+DYNAMIC LIBRARIES ARE OBJECT FILES ON STEROIDS
+Like an archive file, a dynamic library can be built from several .o object files but unlike an archive the object files are properly linked together in a dynamic library to form a single piede of object code.
+A dynamic library contains extra information that the operating system will need to link the library to other things
+
+DYNAMIC LIBRARY:
+	- first create an object file
+		- gcc -I/includes -fPIC -c hfcal.c -o hfcal.o
+			- -fPIC tells gcc to create POSITION INDEPENDENT CODE.. it can be moved around in memory.
+
+
+Some operating systems like windows use a technique called memory mapping when loading dynamic libraries which means all code is effectively poistion independent. If you compile your code on windows you might find that gcc will give you a warning that the fPIC option is not needed.
+- Windows: dynamic link libraryes .dll
+- lInux: shared object files .so
+- Mac: dynamic libraryes .dylib
+
+gcc -shared hfcal.o -c 'xxxxx.so'
+
+The -SHARED option tells gcc that you want to convert a .o object into a DYNMIC library.!!!
+If you compile a library with one name you cannot just rename the file afterwards. You need to recompile
+
+To compile a program using a dynamic library would be the same (-lhfcal). The compiler will work differently because it wont include the library code into the executable file. Istead it will insert some placeholder code taht will track down the library and link to it at runtime
+
+On some mac systems the -shared flag is not available, just replace it with -dynamiclib
+
+Linux checks additional directories that are stored in the LD_LIBRARY_PATH variable. 
+Windows doesnt use that LD_LIBRARY_PATH. It checks local folder and then PATH variable
+
+This is why most programs that use dynamic libraries store them in one of the standard directories. That means on linux and Mac they are normally in directories like /usr/lib or /usr/local/lib and windows developers normally keep .dlls stored in the same directory as the executable
+The library and headers had been installed in standard directories, you didnt have to use a -I flag when you were compiling the code.
+
+Dynamic libraries make it easier to change code at runtime. You can update an application without needing to recompile it.
+
+
+Dynamic libraries are linked to programs at runtime
+Dynamic libraries are created from one or more object files
+On some machines you need to compile them with the -fPIC option
+-fPIC makes the code position-independent
+
+The ar command creates a library archive of object files
+-l<name> links to a file in standard directories such as /usr/lib
+-L<name> adds a directory to the list of standard library directories
+-I<name> adds a directory tot he list of standard include directories.
+gcc -shared converts object files into dynamis libraries
+Dynamic libraries are linked at runtime
+Dynamic libraries have .so .dylib .dll or .dll.a extensions
+Library archives are statically linked
+
+
+
+
+
+
 
 
 
